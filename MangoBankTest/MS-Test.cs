@@ -1,3 +1,4 @@
+using Microsoft.VisualStudio.TestPlatform.TestHost;
 using Team.Mango.Bank_Application;
 using Team.Mango.Bank_Application.TestCode;
 
@@ -8,7 +9,7 @@ namespace MangoBankTest
     {
         //Check if RunBank succesfully created all Users
         [TestMethod]
-        public void TestRunBankCreatesFiveUsers()
+        public void CreateUser_RunBankShouldReturn_5_Users()
         {
             // Arrange
             MethodToTest methodToTest = new MethodToTest();
@@ -24,7 +25,7 @@ namespace MangoBankTest
 
         //Check if User is Admin 
         [TestMethod]
-        public void TestAdminLogin()
+        public void LoginAdmin_ShouldReturnTrue()
         {
             //Arrange
             var methodToTest = new MethodToTest();
@@ -40,9 +41,20 @@ namespace MangoBankTest
         }
 
         [TestMethod]
-        public void UpdateCurrentcyRate_ShouldReturnRate()
+        public void OpenSavingsAccount_ShouldReturn_CorrectAccountNameAndAmount()
         {
+            // Arrange
+            string expectedAccountName = "Test Account";
+            double expectedAmount = 999;
+            string expectedCurrency = "SEK";
 
+            // Act
+            var bankAccount = new BankAccount(expectedAccountName, expectedAmount, expectedCurrency);
+
+            // Assert
+            Assert.AreEqual(expectedAccountName, bankAccount.AccountName);
+            Assert.AreEqual(expectedAmount, bankAccount.Balance);
+            
         }
     }
 }

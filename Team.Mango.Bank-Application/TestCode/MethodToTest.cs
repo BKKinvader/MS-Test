@@ -84,23 +84,12 @@ namespace Team.Mango.Bank_Application.TestCode
 
 
         //Test 3
-        public static double UpdateCurrentcyRate(CurrencyRates CurrRate)
+        public List<BankAccount> BankAccountList { get; set; }
+        public BankAccount OpenSavingAccount(string accountName, double amount, string currency)
         {
-            Console.Clear();
-            double minValue = 9.5;
-            Random R = new Random();
-            double newRate = R.NextDouble();
-            CurrRate._currencyRate = newRate + minValue;
-
-            string currUp = "New USD rate is  ";
-            string goback = "Press enter to go back";
-            Console.SetCursorPosition((Console.WindowWidth - currUp.Length) / 2, Console.CursorTop);
-            Console.WriteLine(currUp + Math.Round(CurrRate._currencyRate, 2));
-            Console.SetCursorPosition((Console.WindowWidth - goback.Length) / 2, Console.CursorTop);
-            Console.WriteLine(goback);
-            Console.ReadKey();
-
-            return CurrRate._currencyRate;
+            BankAccount newAccount = new BankAccount(accountName, amount, currency);
+            this.BankAccountList.Add(newAccount);
+            return newAccount;
         }
 
 
